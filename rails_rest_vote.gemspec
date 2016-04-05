@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["satendrarai5@gmail.com"]
 
   spec.summary       = %q{Add voting ability to rails models.}
-  spec.description   = %q{Provide data on elements in the periodic table.}
+  spec.description   = %q{RestFul services for up and down vote feature on any model of your rails app.}
   spec.homepage      = "https://github.com/tixdo/rails_rest_vote"
   spec.license       = "MIT"
 
