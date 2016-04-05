@@ -3,7 +3,7 @@ require "rails_rest_vote/version"
 require "active_support/dependencies"
 
 module RailsRestVote
-  # Your code goes here...
+
   # Our host application root path
   # We set this when the engine is initialized
   mattr_accessor :app_root

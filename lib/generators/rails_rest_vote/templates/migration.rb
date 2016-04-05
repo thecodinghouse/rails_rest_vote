@@ -7,7 +7,7 @@ class CreateVotes < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_reference :votes, :user, index: true, foreign_key: true
+    add_reference :votes, :<%=singular_table_name%>, index: true, foreign_key: true
 
   end
 end
