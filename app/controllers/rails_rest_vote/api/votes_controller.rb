@@ -89,6 +89,7 @@ module RailsRestVote
 
     #check existance of record before creation
     def exists?
+      initialize_votable_object
       params[:vote][:votable_type] = params[:vote][:votable_type].capitalize
       vote = params[:action] == "like" ? nil :  params[:action] == "up" ? true : false
       uservotes = current_user.votes.where("votable_id = ? AND votable_type = ? AND vote = ?",params[:vote][:votable_id],params[:vote][:votable_type],vote)
