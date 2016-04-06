@@ -9,7 +9,7 @@ module RailsRestVote
     skip_before_filter :verify_authenticity_token
 
     #check current_user existance before voting actions
-    before_action :current_user?, :only=>[:up, :down , :like, :exists]
+    #before_action :current_user?, :only=>[:up, :down , :like, :exists]
 
     #check user already voted or not
     before_action :exists?, :only=>[:up, :down, :like]
@@ -26,7 +26,7 @@ module RailsRestVote
     #return success json i.e {"status":200,"message":"upvoted successfully."}
     #
     def up
-      upvote = current_user.votes.new(vote_params)
+      upvote = Vote.new(vote_params)
       upvote.vote = true
       send_post_response(upvote)
     end
@@ -36,7 +36,7 @@ module RailsRestVote
     #return success json i.e {"status":200,"message":"downvoted successfully."}
     #
     def down
-      downvote = current_user.votes.new(vote_params)
+      downvote = Vote.new(vote_params)
       downvote.vote = false
       send_post_response(downvote)
     end
@@ -65,7 +65,7 @@ module RailsRestVote
     #else response { status: :ok, message: "liked successfully." })
     #
     def like
-      like = current_user.votes.new(vote_params)
+      like = Vote.new(vote_params)
       send_post_response(like)
     end
 
@@ -90,9 +90,10 @@ module RailsRestVote
     #check existance of record before creation
     def exists?
       initialize_votable_object
+      initialize_user
       params[:vote][:votable_type] = params[:vote][:votable_type].capitalize
       vote = params[:action] == "like" ? nil :  params[:action] == "up" ? true : false
-      uservotes = current_user.votes.where("votable_id = ? AND votable_type = ? AND vote = ?",params[:vote][:votable_id],params[:vote][:votable_type],vote)
+      uservotes = Vote.where("votable_id = ? AND votable_type = ? AND user_id = ? AND vote = ?",params[:vote][:votable_id],params[:vote][:votable_type], params[:vote][:user_id],vote)
       return uservotes.size > 0 ? voted(uservotes) : true
     end
 
@@ -137,9 +138,9 @@ module RailsRestVote
       render(json: { status: :ok, likecount: likes.size ,likes:JSON.parse(likes.to_json)})
     end
 
-    def current_user?
-      return !current_user.blank? ? true : unauthenticated!
-    end
+    #def current_user?
+    #  return !current_user.blank? ? true : unauthenticated!
+    #end
 
     def unauthenticated!
       render( json: {status: :unauthorized, errors:"unauthorized access"})
@@ -150,7 +151,7 @@ module RailsRestVote
     end
 
     def vote_params
-      params[:vote].permit(:votable_id, :votable_type)
+      params[:vote].permit(:votable_id, :votable_type, :user_id)
     end
 
   end
