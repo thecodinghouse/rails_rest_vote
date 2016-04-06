@@ -6,7 +6,7 @@ If you are using any frontend framework like angular2 in your application it is 
 
 >**DISCLAIMER**
 >
->Host application user managment model name should be `user`, It is recommended to use [devise gem](https://github.com/plataformatec/devise) for authentication purpose.
+>Your rails application user managment model name should be `user`.
 
 ## Installation
 
@@ -43,32 +43,32 @@ Now you are ready to go.
 
 ## Usage
 
-Add below line to the model you want to vote or like on
+Add below line to the model you want add upvote/downvote or like/unlike functionality
 
     has_many :votes, :as => :votable
 
 It can be used in two different ways.
 
-1. Use as two buttons one for upvote and other for downvote as in _stackoverflow_.
+1. Use as upvote/downvote just like _stackoverflow_.
 
     ##### APIs
 
     > /api/votes/up
     
-    Api is used for upvote on model. user must be signed in for upvoting.
+    Api is used for upvote on model.
     ```
     method: POST 
-body: {"votable_id":"1","votable_type":"Service"}
+body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
 content-type: application/json
 response: {"status":200,"message":"upvoted successfully."}
     ```
     
     > /api/votes/down
     
-    Api is used for downvote on model. user must be signed in for downvoting.
+    Api is used for downvote on model.
     ```
     method: POST 
-body: {"votable_id":"1","votable_type":"Service"}
+body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
 content-type: application/json
 response: {"status":200,"message":"downvoted successfully."}
     ```
@@ -89,16 +89,16 @@ content-type: application/json
 response: {"status":200,"upcount":1,"upvotes":[{"id":1,...}], "downcount":1,"downvotes":[{"id":3,...}]}
     ```
 
-2. Use as one button used for like/unlike just like _facebook_.
+2. Use as like/unlike just like _facebook_.
 
     ##### APIs
 
     > /api/likes
     
-    Api is used for like. user must be signed in for liking.
+    Same api is used for like and unlike. for first time if you hit this api it will work as `like` and If you send same parameters second time it will remove the record from vote table i.e `unlike`
     ```
     method: POST 
-body: {"votable_id":"1","votable_type":"Service"}
+body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
 content-type: application/json
 response: {"status":200,"message":"liked successfully."}
     ```
