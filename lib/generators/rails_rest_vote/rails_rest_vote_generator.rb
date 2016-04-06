@@ -58,7 +58,7 @@ class RailsRestVoteGenerator < Rails::Generators::NamedBase
   def vote_model
 <<RUBY
     class Vote < ActiveRecord::Base
-      belongs_to :user
+      belongs_to :#{singular_table_name}
       belongs_to :votable, :polymorphic =>true
       validates :votable_type, :votable_id, :presence => true
     end

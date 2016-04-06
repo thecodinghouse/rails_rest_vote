@@ -6,10 +6,10 @@ module RailsRestVote
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
     #This would turn off the CSRF check for json api posts/puts
-    skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
+    skip_before_filter :verify_authenticity_token
 
     #check current_user existance before voting actions
-    before_action :current_user?, :only=>[:up, :down, :exists]
+    before_action :current_user?, :only=>[:up, :down , :like, :exists]
 
     #check user already voted or not
     before_action :exists?, :only=>[:up, :down, :like]
