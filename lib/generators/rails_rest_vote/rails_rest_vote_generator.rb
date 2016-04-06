@@ -17,14 +17,20 @@ class RailsRestVoteGenerator < Rails::Generators::NamedBase
     end
   end
 
+  #copy vote migration file to host application from template folder.
   def create_migration_file
     migration_template 'migration.rb', 'db/migrate/create_votes.rb'
   end
 
+  #create vote model to host application
   def create_model_file
     create_file 'app/models/vote.rb',vote_model
   end
 
+  #inject association in user.rb model of host application
+  #
+  #has_many :votes
+  #
   def inject_model_content
     content = model_contents
 
@@ -52,7 +58,7 @@ class RailsRestVoteGenerator < Rails::Generators::NamedBase
   def vote_model
 <<RUBY
     class Vote < ActiveRecord::Base
-      belongs_to :#{singular_table_name}
+      belongs_to :user
       belongs_to :votable, :polymorphic =>true
       validates :votable_type, :votable_id, :presence => true
     end

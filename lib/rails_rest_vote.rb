@@ -1,5 +1,5 @@
-require "rails_rest_vote/version"
 # Requires
+require "rails_rest_vote/version"
 require "active_support/dependencies"
 
 module RailsRestVote
