@@ -10,17 +10,9 @@ Gem::Specification.new do |spec|
   spec.email         = ["satendrarai5@gmail.com"]
 
   spec.summary       = %q{Add voting ability to rails models.}
-  spec.description   = %q{RestFul services for up and down vote feature on any model of your rails app.}
+  spec.description   = %q{RestFul voting gem for your rails app.}
   spec.homepage      = "https://github.com/tixdo/rails_rest_vote"
   spec.license       = "MIT"
-
-  # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
-  # delete this section to allow pushing this gem to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
-  end
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
@@ -29,7 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rails", "~> 4.2.5"
-  spec.add_dependency "json"
+  spec.add_development_dependency 'rails', '~> 4.2', '>= 4.2.5'
+  spec.add_runtime_dependency 'json', '~> 1.8', '>= 1.8.3'
   spec.add_dependency "orm_adapter", "~> 0.1"
 end
