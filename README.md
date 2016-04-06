@@ -6,7 +6,7 @@ If you are using any frontend framework like angular2 in your application it is 
 
 >**DISCLAIMER**
 >
->Your application user managment table name should be `user`, It is recommended to use [devise gem](https://github.com/plataformatec/devise) for authentication purpose.
+>Host application user managment model name should be `user`, It is recommended to use [devise gem](https://github.com/plataformatec/devise) for authentication purpose.
 
 ## Installation
 
