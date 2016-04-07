@@ -1,4 +1,4 @@
-# RailsRestVote 
+# RailsRestVote
 [![Gem Version](https://badge.fury.io/rb/rails_rest_vote.svg)](https://badge.fury.io/rb/rails_rest_vote)
 
 Rails Rest Vote is a Ruby Gem which can add voting feature to any model of your rails application and exposes its RESTful APIs.
@@ -55,37 +55,37 @@ It can be used in two different ways.
     ##### APIs
 
     > /api/votes/up
-    
-    Api is used for upvote on model.
+
+    API is used for upvote on model.
     ```
-    method: POST 
+    method: POST
 body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
 content-type: application/json
 response: {"status":200,"message":"upvoted successfully."}
     ```
-    
+
     > /api/votes/down
-    
-    Api is used for downvote on model.
+
+    API is used for downvote on model.
     ```
-    method: POST 
+    method: POST
 body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
 content-type: application/json
 response: {"status":200,"message":"downvoted successfully."}
     ```
      > /api/votes/user?user_id=1
-    
-    Api returns upvote and downvote count done by a particular user.
+
+    API returns upvote and downvote count done by a particular user.
     ```
-    method: GET 
+    method: GET
 content-type: application/json
 response: {"status":200,"upcount":1,"upvotes":[{"id":1,...}], "downcount":1,"downvotes":[{"id":3,...}]}
     ```
       > /api/votes/model?votable_id=1&votable_type=Service
-    
-    Api returns upvote and downvote count done on a particular model.
+
+    API returns upvote and downvote count done on a particular model.
     ```
-    method: GET 
+    method: GET
 content-type: application/json
 response: {"status":200,"upcount":1,"upvotes":[{"id":1,...}], "downcount":1,"downvotes":[{"id":3,...}]}
     ```
@@ -95,27 +95,27 @@ response: {"status":200,"upcount":1,"upvotes":[{"id":1,...}], "downcount":1,"dow
     ##### APIs
 
     > /api/likes
-    
-    Same api is used for like and unlike. for first time if you hit this api it will work as `like` and If you send same parameters second time it will remove the record from vote table i.e `unlike`
+
+    Same API is used for like and unlike. for first time if you hit this api it will work as `like` and If you send same parameters second time it will remove the record from vote table i.e `unlike`
     ```
-    method: POST 
+    method: POST
 body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
 content-type: application/json
 response: {"status":200,"message":"liked successfully."}
     ```
     > /api/likes/user?user_id=1
-    
-    Api returns like count done by a particular user.
+
+    API returns like count done by a particular user.
     ```
-    method: GET 
+    method: GET
 content-type: application/json
 response: {"status":200,"likecount":1,"likes":[{"id":1,...}]}
     ```
     > /api/likes/model?votable_id=1&votable_type=Service
-    
-    Api returns like count done on a particular model.
+
+    API returns like count done on a particular model.
     ```
-    method: GET 
+    method: GET
 content-type: application/json
 response: {"status":200,"likecount":1,"likes":[{"id":1,...}]}
     ```
