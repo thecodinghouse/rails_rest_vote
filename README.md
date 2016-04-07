@@ -1,11 +1,12 @@
-# RailsRestVote
+# RailsRestVote 
+[![Gem Version](https://badge.fury.io/rb/rails_rest_vote.svg)](https://badge.fury.io/rb/rails_rest_vote)
 
 Rails Rest Vote is a Ruby Gem which can add voting feature to any model of your rails application and exposes its RESTful APIs.
 
 If you are using any frontend framework like angular2 in your application it is really helpful.
 
->**DISCLAIMER**
->
+
+
 >Your rails application user managment model name should be `user`.
 
 ## Installation
