@@ -73,7 +73,7 @@ module RailsRestVote
     #{"status":200,"likecount":1,"likes":[{"id":1,...}]}
     #
     def user_like_count
-      likes = @user.votes
+      likes = @user.votes.where("vote IS NULL")
       send_like_response(likes)
     end
 
@@ -81,7 +81,7 @@ module RailsRestVote
     #{"status":200,"likecount":1,"likes":[{"id":1,...}]}
     #
     def model_like_count
-      likes = @votable.votes
+      likes = @votable.votes.where("vote IS NULL")
       send_like_response(likes)
     end
 
@@ -91,9 +91,16 @@ module RailsRestVote
     def exists?
       initialize_votable_object
       initialize_user
+
       params[:vote][:votable_type] = params[:vote][:votable_type].capitalize
       vote = params[:action] == "like" ? nil :  params[:action] == "up" ? true : false
-      uservotes = Vote.where("votable_id = ? AND votable_type = ? AND user_id = ? AND vote = ?",params[:vote][:votable_id],params[:vote][:votable_type], params[:vote][:user_id],vote)
+
+      if !vote.blank?
+        uservotes = Vote.where("votable_id = ? AND votable_type = ? AND user_id = ? AND vote = ?",params[:vote][:votable_id],params[:vote][:votable_type], params[:vote][:user_id],vote)
+      else
+        uservotes = Vote.where("votable_id = ? AND votable_type = ? AND user_id = ? AND vote IS NULL",params[:vote][:votable_id],params[:vote][:votable_type], params[:vote][:user_id])
+      end
+
       return uservotes.size > 0 ? voted(uservotes) : true
     end
 
