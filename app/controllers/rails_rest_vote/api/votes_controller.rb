@@ -91,14 +91,12 @@ module RailsRestVote
     def exists?
       initialize_votable_object
       initialize_user
-
       params[:vote][:votable_type] = params[:vote][:votable_type].capitalize
-      vote = params[:action] == "like" ? nil :  params[:action] == "up" ? true : false
-
-      if !vote.blank?
-        uservotes = Vote.where("votable_id = ? AND votable_type = ? AND user_id = ? AND vote = ?",params[:vote][:votable_id],params[:vote][:votable_type], params[:vote][:user_id],vote)
-      else
+      if params[:action] == "like"
         uservotes = Vote.where("votable_id = ? AND votable_type = ? AND user_id = ? AND vote IS NULL",params[:vote][:votable_id],params[:vote][:votable_type], params[:vote][:user_id])
+      else
+        vote = params[:action] == "up" ? true : false
+        uservotes = Vote.where("votable_id = ? AND votable_type = ? AND user_id = ? AND vote = ?",params[:vote][:votable_id],params[:vote][:votable_type], params[:vote][:user_id],vote)
       end
 
       return uservotes.size > 0 ? voted(uservotes) : true
