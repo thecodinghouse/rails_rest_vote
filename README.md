@@ -1,13 +1,13 @@
 # RailsRestVote
 [![Gem Version](https://badge.fury.io/rb/rails_rest_vote.svg)](https://badge.fury.io/rb/rails_rest_vote)
 
-Rails Rest Vote is a Ruby Gem which can add voting feature to any model of your rails application and exposes its RESTful APIs.
+Rails Rest Vote is a Ruby Gem which adds voting feature to any model of your rails application and exposes its RESTful APIs.
 
 If you are using any frontend framework like angular2 in your application it is really helpful.
 
 
 
->Your rails application user managment model name should be `user`.
+>Your rails application user managment model name should be `User`.
 
 ## Installation
 
@@ -26,11 +26,11 @@ Or install it yourself as:
 
 #### Database Migrations
 
-Run below command in your project folder from terminal.
+Run the following command in your project folder:
 
     $ rails g rails_rest_vote user
 
-It will do three things for you.
+It will do 3 things for you:
 
 - Create a migration file of Vote table in db/migrate/ folder.
 - Insert association in user model i.e has_many :votes
@@ -40,17 +40,17 @@ After that migrate database by using.
 
     $ rake db:migrate
 
-Now you are ready to go.
+Now you are good to go.
 
 ## Usage
 
-Add below line to the model you want add upvote/downvote or like/unlike functionality
+Add following line to the model you want to use upvote/downvote or like/unlike functionality:
 
     has_many :votes, :as => :votable
 
-It can be used in two different ways.
+It can be used in 2 ways:
 
-1. Use as upvote/downvote just like _stackoverflow_.
+1. Use as upvote/downvote ( _stackoverflow_):
 
     ##### APIs
 
@@ -90,13 +90,13 @@ content-type: application/json
 response: {"status":200,"upcount":1,"upvotes":[{"id":1,...}], "downcount":1,"downvotes":[{"id":3,...}]}
     ```
 
-2. Use as like/unlike just like _facebook_.
+2. Use as like/unlike ( _facebook_):
 
     ##### APIs
 
     > /api/likes
 
-    Same API is used for like and unlike. for first time if you hit this api it will work as `like` and If you send same parameters second time it will remove the record from vote table i.e `unlike`
+    Same API is used for like and unlike functionality.For the first time if you hit this API , it will work as `like` and if you send same parameters second time it will remove record from the vote table i.e `unlike`
     ```
     method: POST
 body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
@@ -119,6 +119,9 @@ response: {"status":200,"likecount":1,"likes":[{"id":1,...}]}
 content-type: application/json
 response: {"status":200,"likecount":1,"likes":[{"id":1,...}]}
     ```
+    
+
+>Note: Depending on your use case, both features can be used in same application.
 
 ## Contributing
 
