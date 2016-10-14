@@ -3,7 +3,7 @@
 
 Rails Rest Vote is a Ruby Gem which adds voting feature to any model of your rails application and exposes its RESTful APIs.
 
-If you are using any frontend framework like angular2 in your application it is really helpful.
+If you are using any frontend client like angular2 in your web app and also for mobile apps, it is really helpful.
 
 
 
