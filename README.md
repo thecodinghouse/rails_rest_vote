@@ -59,9 +59,9 @@ It can be used in 2 ways:
     API is used for upvote on model.
     ```
     method: POST
-body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
-content-type: application/json
-response: {"status":200,"message":"upvoted successfully."}
+    body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
+    content-type: application/json
+    response: {"status":200,"message":"upvoted successfully."}
     ```
 
     > /api/votes/down
@@ -69,25 +69,25 @@ response: {"status":200,"message":"upvoted successfully."}
     API is used for downvote on model.
     ```
     method: POST
-body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
-content-type: application/json
-response: {"status":200,"message":"downvoted successfully."}
+    body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
+    content-type: application/json
+    response: {"status":200,"message":"downvoted successfully."}
     ```
      > /api/votes/user?user_id=1
 
     API returns upvote and downvote count done by a particular user.
     ```
     method: GET
-content-type: application/json
-response: {"status":200,"upcount":1,"upvotes":[{"id":1,...}], "downcount":1,"downvotes":[{"id":3,...}]}
+    content-type: application/json
+    response: {"status":200,"upcount":1,"upvotes":[{"id":1,...}], "downcount":1,"downvotes":[{"id":3,...}]}
     ```
       > /api/votes/model?votable_id=1&votable_type=Service
 
     API returns upvote and downvote count done on a particular model.
     ```
     method: GET
-content-type: application/json
-response: {"status":200,"upcount":1,"upvotes":[{"id":1,...}], "downcount":1,"downvotes":[{"id":3,...}]}
+    content-type: application/json
+    response: {"status":200,"upcount":1,"upvotes":[{"id":1,...}], "downcount":1,"downvotes":[{"id":3,...}]}
     ```
 
 2. Use as like/unlike ( _facebook_):
@@ -99,25 +99,25 @@ response: {"status":200,"upcount":1,"upvotes":[{"id":1,...}], "downcount":1,"dow
     Same API is used for like and unlike functionality.For the first time if you hit this API , it will work as `like` and if you send same parameters second time it will remove record from the vote table i.e `unlike`
     ```
     method: POST
-body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
-content-type: application/json
-response: {"status":200,"message":"liked successfully."}
+    body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
+    content-type: application/json
+    response: {"status":200,"message":"liked successfully."}
     ```
     > /api/likes/user?user_id=1
 
     API returns like count done by a particular user.
     ```
     method: GET
-content-type: application/json
-response: {"status":200,"likecount":1,"likes":[{"id":1,...}]}
+    content-type: application/json
+    response: {"status":200,"likecount":1,"likes":[{"id":1,...}]}
     ```
     > /api/likes/model?votable_id=1&votable_type=Service
 
     API returns like count done on a particular model.
     ```
     method: GET
-content-type: application/json
-response: {"status":200,"likecount":1,"likes":[{"id":1,...}]}
+    content-type: application/json
+    response: {"status":200,"likecount":1,"likes":[{"id":1,...}]}
     ```
     
 
