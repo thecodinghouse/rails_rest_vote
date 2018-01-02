@@ -7,7 +7,7 @@ If you are using any frontend client like angular2 in your web app and also for 
 
 ## Prerequisites
 
-##### Enabling CORS
+#### Enabling CORS
 
 If you’re building a public API you’ll probably want to enable Cross-Origin Resource Sharing (CORS), in order to make cross-origin AJAX requests possible.
 
@@ -45,17 +45,11 @@ And then execute:
 
     $ bundle install
 
-Or install it yourself as:
-
-    $ gem install rails_rest_vote
-
-#### Database Migrations
-
 Run the following command in your project folder:
 
     $ rails g rails_rest_vote MODEL
 
-In the following command you will replace MODEL with the class name used for the application’s users (it’s frequently User but could also be Admin)
+In the above command you will need to replace `MODEL` with the class name used for the application’s users (it’s frequently `User` but could also be `Admin`)
 
 It will do 3 things for you:
 
@@ -147,11 +141,11 @@ It can be used in 2 ways, I am using `Post` model in below examples:
     response: {"status":200,"likecount":1,"likes":[{"id":1,...}]}
     ```
     
->`user_id` inside request body can be `admin_id`, it depends on the application’s users model (it’s frequently User but could also be Admin)
+>`user_id` inside request body can be `admin_id`, it depends on the application’s users model (it’s frequently `User` but could also be `Admin`)
 
 >Note: Depending on your use case, both features can be used in same application.
 
-### Token-based authentication
+## Token-based authentication
 
 If you are using **Token-based authentication** for authorizing requests, You can do in ApplicationController of your app.
 ```
