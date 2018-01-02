@@ -71,13 +71,13 @@ Now you are good to go.
 
 ## Usage
 
-Add following line to the model you want to use upvote/downvote or like/unlike functionality:
+Add below line to the model for which you want to record `upvote/downvote` or `like/unlike` functionality:
 
     has_many :votes, :as => :votable
 
-It can be used in 2 ways:
+It can be used in 2 ways, I am using `Post` model in below examples:
 
-1. Use as upvote/downvote ( _stackoverflow_):
+1. Use as `upvote/downvote` ( _stackoverflow_):
 
     ##### APIs
 
@@ -86,7 +86,7 @@ It can be used in 2 ways:
     API is used for upvote on model.
     ```
     method: POST
-    body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
+    body: {"votable_id":"1","votable_type":"Post","user_id":"1"}
     content-type: application/json
     response: {"status":200,"message":"upvoted successfully."}
     ```
@@ -96,7 +96,7 @@ It can be used in 2 ways:
     API is used for downvote on model.
     ```
     method: POST
-    body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
+    body: {"votable_id":"1","votable_type":"Post","user_id":"1"}
     content-type: application/json
     response: {"status":200,"message":"downvoted successfully."}
     ```
@@ -108,7 +108,7 @@ It can be used in 2 ways:
     content-type: application/json
     response: {"status":200,"upcount":1,"upvotes":[{"id":1,...}], "downcount":1,"downvotes":[{"id":3,...}]}
     ```
-      > /api/votes/model?votable_id=1&votable_type=Service
+      > /api/votes/model?votable_id=1&votable_type=Post
 
     API returns upvote and downvote count done on a particular model.
     ```
@@ -117,7 +117,7 @@ It can be used in 2 ways:
     response: {"status":200,"upcount":1,"upvotes":[{"id":1,...}], "downcount":1,"downvotes":[{"id":3,...}]}
     ```
 
-2. Use as like/unlike ( _facebook_):
+2. Use as `like/unlike` ( _facebook_):
 
     ##### APIs
 
@@ -126,7 +126,7 @@ It can be used in 2 ways:
     Same API is used for like and unlike functionality.For the first time if you hit this API , it will work as `like` and if you send same parameters second time it will remove record from the vote table i.e `unlike`
     ```
     method: POST
-    body: {"votable_id":"1","votable_type":"Service","user_id":"1"}
+    body: {"votable_id":"1","votable_type":"Post","user_id":"1"}
     content-type: application/json
     response: {"status":200,"message":"liked successfully."}
     ```
@@ -138,7 +138,7 @@ It can be used in 2 ways:
     content-type: application/json
     response: {"status":200,"likecount":1,"likes":[{"id":1,...}]}
     ```
-    > /api/likes/model?votable_id=1&votable_type=Service
+    > /api/likes/model?votable_id=1&votable_type=Post
 
     API returns like count done on a particular model.
     ```
